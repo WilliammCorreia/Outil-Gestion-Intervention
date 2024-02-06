@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>AccordEnergie</title>
+        <link rel="stylesheet" href="index.css.twig"/>
+    </head>
+</html>
+<body>
+    <main>
+        <h1>Connexion</h1>
+
+        {# Ca c'est grâce à twig #}
+        {% if msg %}
+            <div>{{msg}}</div>
+        {% endif %}
+
+        <form action="" method="post">
+
+            <label for="email"></label>
+            <input for="email"
+                type="email"
+                required="required"
+                id="email"
+                name="email"
+                placeholder="Entrer l'email"
+            />
+
+            <br>
+
+            <label for="password"></label>
+            <input
+                type="password"
+                required="required"
+                id="password"
+                name="password"
+                placeholder="Entrer le mot de passe"
+            />
+
+            <br>
+
+            <div>
+                <input type="submit" name="send" value="Se Connecter" />
+            </div>
+
+        </form>
+
+        <p>
+            <a href="register.php">Pas encore de compte ?</a>
+        </p>
+    </main>
+</body>
