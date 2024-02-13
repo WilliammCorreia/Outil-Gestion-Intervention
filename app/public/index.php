@@ -8,10 +8,8 @@
     $msg = null;
 
     if(isset($_POST['send'])) {
-        var_dump($_POST);
 
         $user = $page->getUserByEmail($_POST['email']);
-        var_dump($user);
 
         if(!$user) {
             $msg = "Email ou mot de passe incorrect !";
@@ -22,7 +20,8 @@
             }
             else {
                 $msg = "Connecté !";
-                // header('Location: profil.php');
+                $page->session->add('user', $user);
+                header('Location: profil.php');
             }
         }
 

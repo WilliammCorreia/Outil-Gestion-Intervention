@@ -2,47 +2,53 @@
     <head>
         <meta charset="utf-8"/>
         <title>AccordEnergie</title>
-        <link rel="stylesheet" href="register.css"/>
+        <link rel="stylesheet" href="style/register.css"/>
     </head>
 </html>
-<body>
-    <main>
-        <h1>Créer un compte</h1>
+{% block content %}
+    <body>
+        <header>
+            <h2>AccordEnergie</h2>
+            <img src="style/logo.png" alt="Logo">
+        </header>
+        <main>
+            <h1>Créer un compte</h1>
 
-        <form action="" method="post">
-            <label for="email"></label>
-            <input for="email"
-                type="email"
-                required="required"
-                id="email"
-                name="email"
-                placeholder="Entrer l'email"
-            />
-            <br>
-            <label for="password"></label>
-            <input
-                type="password"
-                required="required"
-                id="password"
-                name="password"
-                placeholder="Entrer le mot de passe"
-            />
-            <br>
-            <label for="password_cfg"></label>
-            <input
-                type="password"
-                required="required"
-                id="password_cfg"
-                name="password_cfg"
-                placeholder="Confirmer le mot de passe"
-            />
-            <div>
-                <input type="submit" name="send" value="Créer" />
-            </div>
-        </form>
+            <form action="" method="post">
+                <label for="email"></label>
+                <input for="email"
+                    type="email"
+                    required="required"
+                    id="email"
+                    name="email"
+                    placeholder="Entrer l'email"
+                />
+                <br>
+                <label for="password"></label>
+                <input
+                    type="password"
+                    required="required"
+                    id="password"
+                    name="password"
+                    placeholder="Entrer le mot de passe"
+                />
+                <br>
+                <label for="password_cfg"></label>
+                <input
+                    type="password"
+                    required="required"
+                    id="password_cfg"
+                    name="password_cfg"
+                    placeholder="Confirmer le mot de passe"
+                />
+                <div>
+                    <input type="submit" name="send" value="Créer" />
+                </div>
+            </form>
 
-        <p>
-            <a href="index.php">Se connecter ?</a>
-        </p>
-    </main>
-</body>
+            <p>
+                <a href="index.php">Se connecter ?</a>
+            </p>
+        </main>
+    </body>
+{% endblock %}

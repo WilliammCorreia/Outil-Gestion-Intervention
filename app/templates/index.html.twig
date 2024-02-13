@@ -2,10 +2,13 @@
     <head>
         <meta charset="utf-8"/>
         <title>AccordEnergie</title>
-        <link rel="stylesheet" href="index.css.twig"/>
+        <link rel="stylesheet" href="style/index.css"/>
     </head>
-</html>
 <body>
+    <header>
+        <h2>AccordEnergie</h2>
+        <img src="style/logo.png" alt="Logo">
+    </header>
     <main>
         <h1>Connexion</h1>
 
@@ -15,7 +18,6 @@
         {% endif %}
 
         <form action="" method="post">
-
             <label for="email"></label>
             <input for="email"
                 type="email"
@@ -41,7 +43,6 @@
             <div>
                 <input type="submit" name="send" value="Se Connecter" />
             </div>
-
         </form>
 
         <p>
@@ -49,3 +50,4 @@
         </p>
     </main>
 </body>
+</html>
