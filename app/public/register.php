@@ -13,7 +13,10 @@
         # Cela insert les données que l'on récupère du formulaire dans la BDD
         $page->insert('users', [
             'email' => $_POST['email'],
-            'password' => password_hash($_POST['password'], PASSWORD_DEFAULT)
+            'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
+            'last_name' => $_POST['last_name'],
+            'first_name' => $_POST['first_name'],
+            'postal_nb' => $_POST['postal_nb']
         ]);
 
         header('Location: index.php');

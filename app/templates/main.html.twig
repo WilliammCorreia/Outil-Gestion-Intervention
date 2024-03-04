@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>AccordEnergie</title>
+        <link rel="stylesheet" href="style/register.css"/>
+    </head>
+</html>
+{% block content %}
+    <body>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Sujet</th>
+                    <th>Statut</th>
+                    <th>Priorité</th>
+                    <th>Assigné</th>
+                    <th>Demandeur</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for tickets in ticket %}
+                <tr>
+                    <td>{{ tickets.id_ticket }}</td>
+                    <td>{{ tickets.sujet }}</td>
+                    <td>{{ tickets.statut }}</td>
+                    <td>{{ tickets.priorite }}</td>
+                    <td>{{ tickets.assigne }}</td>
+                    <td>{{ tickets.demandeur }}</td>
+                    <td>{{ tickets.date }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </body>
+{% endblock %}
