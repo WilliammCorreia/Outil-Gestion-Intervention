@@ -21,7 +21,7 @@
             else {
                 $msg = "Connecté !";
                 $page->session->add('user', $user);
-                header('Location: profil.php');
+                header('Location: main.php');
             }
         }
 

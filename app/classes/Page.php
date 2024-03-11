@@ -40,11 +40,33 @@ class Page
         return $this->twig->render($name, $data);
     }
 
+    public function getAllUsers() {
+        $sql = "SELECT * FROM users";
+        $stmt = $this->link->prepare($sql);
+        $stmt->execute();
+        $allUsers = $stmt->fetchAll();
+        return $allUsers;
+    }
+
+    public static function deleteUser($id) {
+        $sql = "DELETE FROM users WHERE id = :id";
+        $stmt = $this->link->prepare($sql);
+        $stmt->execute(['id' => $id]);
+    }
+
     public function getAllTicket() {
         $sql = "SELECT * FROM ticket";
         $stmt = $this->link->prepare($sql);
         $stmt->execute();
         $allTicket = $stmt->fetchAll();
         return $allTicket;
+    }
+
+    public function deleteTicket() {
+        $sql = "SELECT * FROM ticket WHERE id_ticket = :id_ticket";
+        $stmt = $this->link->prepare($sql);
+        $stmt->execute(['id_ticket' => $id_ticket]);
+        $ticket = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $ticket;
     }
 }
