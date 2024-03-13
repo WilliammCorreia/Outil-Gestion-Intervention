@@ -48,10 +48,32 @@ class Page
         return $allUsers;
     }
 
-    public static function deleteUser($id) {
+    public function getUser(int $id) {
+        $sql = "SELECT * FROM users WHERE id = :id";
+        $stmt = $this->link->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        $userInfo = $stmt->fetch();
+        return $userInfo;
+    }
+
+
+    public function deleteUser(int $id) {
         $sql = "DELETE FROM users WHERE id = :id";
         $stmt = $this->link->prepare($sql);
         $stmt->execute(['id' => $id]);
+    }
+
+    public function modifyUser(int $id, array $data) {
+        $sql = "UPDATE users SET email = :email, last_name = :last_name, first_name = :first_name, postal_nb = :postal_nb, statut = :statut WHERE id = :id";
+        $stmt = $this->link->prepare($sql);
+        $stmt->execute([
+            'id' => $id,
+            'email' => $data['email'],
+            'last_name' => $data['last_name'],
+            'first_name' => $data['first_name'],
+            'postal_nb' => $data['postal_nb'],
+            'statut' => $data['statut']
+        ]);
     }
 
     public function getAllTicket() {

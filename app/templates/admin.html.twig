@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8"/>
         <title>AccordEnergie</title>
-        <link rel="stylesheet" href="style/register.css"/>
+        <link rel="stylesheet" href="style/index.css"/>
     </head>
 </html>
 {% block content %}
@@ -27,8 +27,18 @@
                     <td>{{ user.first_name }}</td>
                     <td>{{ user.postal_nb }}</td>
                     <td>{{ user.statut }}</td>
-                    {# <td><button href="{{ $page->deleteUser(user.id) }}">Modifier</button></td> #}
-                    <td><a href="{{ Page::deleteUser(user.id) }}">Supprimer</a></td>
+                    <td>
+                        <form action="modifAdmin.php" method="post">
+                            <input type="hidden" name="userModif" value="{{ user.id }}">
+                            <button type="submit">Modifier</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="admin.php" method="post">
+                            <input type="hidden" name="user_id" value="{{ user.id }}">
+                            <button type="submit">Supprimer</button>
+                        </form>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
