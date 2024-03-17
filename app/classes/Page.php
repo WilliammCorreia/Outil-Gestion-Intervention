@@ -81,6 +81,16 @@ class Page
         $sql = "INSERT INTO ticket (sujet, statut, priorite, assigne, demandeur, id_client, id_intervenant) VALUES (:sujet, :statut, :priorite, :assigne, :demandeur, :id_client, :id_intervenant)";
         $stmt = $this->link->prepare($sql);
         $stmt->execute($data);
+
+        $id_ticket = $this->link->lastInsertId();
+        return $id_ticket;
+    }
+
+    public function addNote(array $data)
+    {
+        $sql = "INSERT INTO note (note, id_ticket, id_auteur) VALUES (:note, :id_ticket, :id_auteur)";
+        $stmt = $this->link->prepare($sql);
+        $stmt->execute($data);
     }
 
     public function getAllTicket() {
@@ -89,6 +99,14 @@ class Page
         $stmt->execute();
         $allTicket = $stmt->fetchAll();
         return $allTicket;
+    }
+
+    public function getTicket(int $id_ticket) {
+        $sql = "SELECT * FROM ticket WHERE id_ticket = :id_ticket";
+        $stmt = $this->link->prepare($sql);
+        $stmt->execute(['id_ticket' => $id_ticket]);
+        $ticket = $stmt->fetch();
+        return $ticket;
     }
 
     public function getClientTicket($id_client) {
@@ -107,11 +125,21 @@ class Page
         return $IntervenantTicket;
     }
 
-    public function deleteTicket() {
-        $sql = "SELECT * FROM ticket WHERE id_ticket = :id_ticket";
+    public function modifTicket(int $id_ticket, array $data) {
+        $sql = "UPDATE ticket SET id_ticket = :id_ticket, sujet = :sujet, statut = :statut, priorite = :priorite, assigne = :assigne, demandeur = :demandeur, id_client = :id_client, id_intervenant = :id_intervenant WHERE id_ticket = :id_ticket";
+        $stmt = $this->link->prepare($sql);
+        $stmt->execute($data);
+    }
+
+    public function modifStatut(array $data) {
+        $sql = "UPDATE ticket SET statut = :statut WHERE id_ticket = :id_ticket";
+        $stmt = $this->link->prepare($sql);
+        $stmt->execute($data);
+    }
+
+    public function deleteTicket(int $id_ticket) {
+        $sql = "DELETE FROM ticket WHERE id_ticket = :id_ticket";
         $stmt = $this->link->prepare($sql);
         $stmt->execute(['id_ticket' => $id_ticket]);
-        $ticket = $stmt->fetch(\PDO::FETCH_ASSOC);
-        return $ticket;
     }
 }

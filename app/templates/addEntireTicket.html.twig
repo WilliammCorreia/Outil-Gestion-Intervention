@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>AccordEnergie</title>
+        <link rel="stylesheet" href="style/register.css"/>
+    </head>
+</html>
+{% block content %}
+    <body>
+        <header>
+            <h2>AccordEnergie</h2>
+            <img src="style/logo.png" alt="Logo">
+        </header>
+        <main>
+            <h1>Ajouter un Ticket</h1>
+
+            <form action="main.php?statut={{statut}}&id={{id}}" method="post">
+                <label for="sujet">Sujet :</label>
+                <input for="sujet"
+                    type="text"
+                    required="required"
+                    id="sujet"
+                    name="sujet"
+                />
+                <br>
+                <label for="statut">Statut :</label>
+                <input for="statut"
+                    type="text"
+                    required="required"
+                    id="statut"
+                    name="statut"
+                />
+                <br>
+                <label for="priorite">Priorite :</label>
+                <input for="priorite"
+                    type="text"
+                    required="required"
+                    id="priorite"
+                    name="priorite"
+                />
+                <br>
+                <label for="assigne">Assigné :</label>
+                <input for="assigne"
+                    type="text"
+                    required="required"
+                    id="assigne"
+                    name="assigne"
+                />
+                <br>
+                <label for="demandeur">Demandeur :</label>
+                <input for="demandeur"
+                    type="text"
+                    required="required"
+                    id="demandeur"
+                    name="demandeur"
+                />
+                <br>
+                <label for="id_client">ID Client :</label>
+                <input for="id_client"
+                    type="text"
+                    required="required"
+                    id="id_client"
+                    name="id_client"
+                />
+                <br>
+                <label for="id_intervenant">ID Intervenant :</label>
+                <input for="id_intervenant"
+                    type="text"
+                    required="required"
+                    id="id_intervenant"
+                    name="id_intervenant"
+                />
+                <br>
+                <label for="note">Commentaire :</label>
+                <input for="note"
+                    type="text"
+                    required="required"
+                    id="note"
+                    name="note"
+                />
+                <br>
+                <div>
+                    <input type="submit" name="addEntireTicket" value="Ajouter" />
+                </div>
+            </form>
+        </main>
+    </body>
+{% endblock %}
