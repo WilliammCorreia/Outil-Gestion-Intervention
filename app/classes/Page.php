@@ -76,6 +76,13 @@ class Page
         ]);
     }
 
+    public function addTicket(array $data)
+    {
+        $sql = "INSERT INTO ticket (sujet, statut, priorite, assigne, demandeur, id_client, id_intervenant) VALUES (:sujet, :statut, :priorite, :assigne, :demandeur, :id_client, :id_intervenant)";
+        $stmt = $this->link->prepare($sql);
+        $stmt->execute($data);
+    }
+
     public function getAllTicket() {
         $sql = "SELECT * FROM ticket";
         $stmt = $this->link->prepare($sql);

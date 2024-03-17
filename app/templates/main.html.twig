@@ -29,6 +29,28 @@
                     <td>{{ tickets.assigne }}</td>
                     <td>{{ tickets.demandeur }}</td>
                     <td>{{ tickets.date }}</td>
+                    {% if ( statut == 'client' ) %}
+                        <td>
+                            <form action="addTicket.php?statut={{statut}}&id={{id}}" method="post">
+                                <input type="hidden" name="addTicket">
+                                <button type="submit">Ajouter</button>
+                            </form>
+                        </td>
+                        <td><button type="submit">Lire</button></td>
+                    {% elseif ( statut == 'intervenant' ) %}
+                        <td><button type="submit">Modifier</button></td>
+                        <td><button type="submit">Lire</button></td>
+                    {% elseif ( statut == 'standardiste' ) %}
+                        <td><button type="submit">Ajouter</button></td>
+                        <td><button type="submit">Modifier</button></td>
+                        <td><button type="submit">Lire</button></td>
+                        <td><button type="submit">Supprimer</button></td>
+                    {% else %}
+                        <td><button type="submit">Ajouter</button></td>
+                        <td><button type="submit">Modifier</button></td>
+                        <td><button type="submit">Lire</button></td>
+                        <td><button type="submit">Supprimer</button></td>
+                    {% endif %}
                 </tr>
             {% endfor %}
             </tbody>

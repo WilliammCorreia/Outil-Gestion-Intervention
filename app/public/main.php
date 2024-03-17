@@ -21,5 +21,20 @@
         $allTicket = $page->getAllTicket();
     }
 
+    $user = $page->getUser($id);
+
+    if(isset($_POST['addTicket'])) {
+
+        $page->addTicket([
+            'sujet' => $_POST['sujet'],
+            'statut' => "En attente",
+            'priorite' => "normal",
+            'assigne' => "-",
+            'demandeur' => $user["first_name"] ." ". $user["last_name"],
+            'id_client' => $id,
+            'id_intervenant' => 0
+        ]);
+
+    }
     
-    echo $page->render('main.html.twig', ['ticket' => $allTicket]);
+    echo $page->render('main.html.twig', ['ticket' => $allTicket, 'statut' => $statut, 'id' => $id]);
