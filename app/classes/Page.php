@@ -84,6 +84,22 @@ class Page
         return $allTicket;
     }
 
+    public function getClientTicket($id_client) {
+        $sql = "SELECT * FROM ticket WHERE id_client = :id_client";
+        $stmt = $this->link->prepare($sql);
+        $stmt->execute(['id_client' => $id_client]);
+        $ClientTicket = $stmt->fetchAll();
+        return $ClientTicket;
+    }
+
+    public function getIntervenantTicket($id_intervenant) {
+        $sql = "SELECT * FROM ticket WHERE id_intervenant = :id_intervenant";
+        $stmt = $this->link->prepare($sql);
+        $stmt->execute(['id_intervenant' => $id_intervenant]);
+        $IntervenantTicket = $stmt->fetchAll();
+        return $IntervenantTicket;
+    }
+
     public function deleteTicket() {
         $sql = "SELECT * FROM ticket WHERE id_ticket = :id_ticket";
         $stmt = $this->link->prepare($sql);
