@@ -7,6 +7,19 @@
 </html>
 {% block content %}
     <body>
+        <nav>
+            <ul>
+                {% if ( statut == 'admin' ) %}
+                    <li>
+                        <a href="admin.php?statut={{statut}}&id={{id}}"><button>Utilisateur</button></a>
+                    </li>
+                {% endif %}
+                <li>
+                    <a href="index.php"><button>Déconnexion</button></a>
+                </li>
+            </ul>
+        </nav>
+
         <table>
             <thead>
                 <tr>
@@ -66,10 +79,25 @@
                             </form>
                         </td>
                     {% else %}
-                        <td><button type="submit">Ajouter</button></td>
-                        <td><button type="submit">Modifier</button></td>
+                        <td>
+                            <form action="addEntireTicket.php?statut={{statut}}&id={{id}}&id_ticket={{tickets.id_ticket}}" method="post">
+                                <input type="hidden" name="addEntireTicket">
+                                <button type="submit">Ajouter</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="modifTicket.php?statut={{statut}}&id={{id}}&id_ticket={{tickets.id_ticket}}" method="post">
+                                <input type="hidden" name="modifTicket" value="{{ tickets.id_ticket }}">
+                                <button type="submit">Modifier</button>
+                            </form>
+                        </td>
                         <td><button type="submit">Lire</button></td>
-                        <td><button type="submit">Supprimer</button></td>
+                        <td>
+                            <form action="main.php?statut={{statut}}&id={{id}}" method="post">
+                                <input type="hidden" name="deleteTicket" value="{{ tickets.id_ticket }}">
+                                <button type="submit">Supprimer</button>
+                            </form>
+                        </td>
                     {% endif %}
                 </tr>
             {% endfor %}

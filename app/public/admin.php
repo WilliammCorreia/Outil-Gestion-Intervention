@@ -6,10 +6,12 @@
     
     $page = new Page();
 
+    $statut = $_GET['statut'];
+    $id = $_GET['id'];
+
     $allUsers = $page->getAllUsers();
     
-    echo $page->render('admin.html.twig', ['users' => $allUsers]);
-
+    echo $page->render('admin.html.twig', ['users' => $allUsers, 'statut' => $statut, 'id' => $id]);
 
     // Supprimer un user
     if (isset($_POST['user_id'])) {
