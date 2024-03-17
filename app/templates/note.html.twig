@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>AccordEnergie</title>
+        <link rel="stylesheet" href="style/register.css"/>
+    </head>
+</html>
+{% block content %}
+    <body>
+        <nav>
+            <ul>
+                {% if ( statut == 'admin' ) %}
+                    <li>
+                        <a href="admin.php?statut={{statut}}&id={{id}}"><button>Utilisateur</button></a>
+                    </li>
+                {% endif %}
+                <li>
+                    <a href="index.php"><button>Déconnexion</button></a>
+                </li>
+                <li>
+                    <a href="main.php?statut={{statut}}&id={{id}}&id_ticket={{id_ticket}}"><button>Tickets</button></a>
+                </li>
+            </ul>
+        </nav>
+
+        <h1>Commentaires :</h1>
+        <main>
+            <ul>
+                {% for note in notes %}
+                    <li> {{ note.note }}</li>
+                {% endfor %}
+                <li>
+                    <form action="note.php?statut={{statut}}&id={{id}}&id_ticket={{id_ticket}}" method="post">
+                        <input type="text" name="addNote">
+                        <button type="submit">Ajouter</button>
+                    </form>
+                </li>
+            </ul>
+        </main>
+    </body>
+{% endblock %}

@@ -93,6 +93,14 @@ class Page
         $stmt->execute($data);
     }
 
+    public function getNote(int $id_ticket) {
+        $sql = "SELECT * FROM note WHERE id_ticket = :id_ticket";
+        $stmt = $this->link->prepare($sql);
+        $stmt->execute(['id_ticket' => $id_ticket]);
+        $note = $stmt->fetchAll();
+        return $note;
+    }
+
     public function getAllTicket() {
         $sql = "SELECT * FROM ticket";
         $stmt = $this->link->prepare($sql);

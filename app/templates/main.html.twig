@@ -49,7 +49,12 @@
                                 <button type="submit">Ajouter</button>
                             </form>
                         </td>
-                        <td><button type="submit">Lire</button></td>
+                        <td>
+                            <form action="note.php?statut={{statut}}&id={{id}}&id_ticket={{tickets.id_ticket}}" method="post">
+                                <input type="hidden" name="addTicket">
+                                <button type="submit">Commentaire</button>
+                            </form>
+                        </td>
                     {% elseif ( statut == 'intervenant' ) %}
                         <td>
                             <form action="modifStatut.php?statut={{statut}}&id={{id}}&id_ticket={{tickets.id_ticket}}" method="post">
