@@ -96,11 +96,28 @@
     }
 
     if(isset($_POST['deleteTicket'])) {
+
         $id_Ticket = $_POST['deleteTicket'];
         $page->deleteTicket($id_Ticket);
 
         header('Location: main.php?statut='. $statut .'&id='. $id);
         exit;
     }
+
+    if(isset($_POST['modifyProfil'])) {
+
+       $page->modifyProfil($id, [
+           'id' => $id,
+           'email' => $_POST['email'],
+           'last_name' => $_POST['last_name'],
+           'first_name' => $_POST['first_name'],
+           'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
+           'postal_nb' => $_POST['postal_nb'],
+           'statut' => $_POST['statut']
+       ]);
+
+       header('Location: main.php?statut='. $statut .'&id='. $id);
+       exit();
+   }
     
     echo $page->render('main.html.twig', ['ticket' => $allTicket, 'statut' => $statut, 'id' => $id]);

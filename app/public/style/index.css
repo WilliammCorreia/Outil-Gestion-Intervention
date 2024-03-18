@@ -12,6 +12,7 @@ body {
 header {
     display: flex;
     justify-content: space-between;
+    flex-direction: row;
     position: absolute;
     top: 5%;
     left: 5%;
@@ -19,6 +20,16 @@ header {
     width: 90%;
     margin: 0;
     padding: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav li {
+    display: flex;
 }
 
 header h2 {

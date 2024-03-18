@@ -2,12 +2,29 @@
     <head>
         <meta charset="utf-8"/>
         <title>AccordEnergie</title>
-        <link rel="stylesheet" href="style/index.css"/>
+        <link rel="stylesheet" href="style/main.css"/>
     </head>
 </html>
 {% block content %}
     <body>
-        <a href="main.php?statut={{statut}}&id={{id}}"><button>Ticket</button></a>
+    <nav>
+        <ul>
+        <li><h2>AccordEnergie</h2></li>
+            {% if ( statut == 'admin' ) %}
+                <li>
+                    <a href="main.php?statut={{statut}}&id={{id}}"><button>Ticket</button></a></a>
+                </li>
+            {% endif %}
+            <li>
+                <a href="profil.php?statut={{statut}}&id={{id}}"><button>Profil</button></a>
+            </li>
+            <li>
+                <a href="index.php"><button>Déconnexion</button></a>
+            </li>
+            <li><img src="style/logo.png" alt="Logo"></li>
+
+        </ul>
+    </nav>
         <table>
             <thead>
                 <tr>
@@ -29,7 +46,7 @@
                     <td>{{ user.postal_nb }}</td>
                     <td>{{ user.statut }}</td>
                     <td>
-                        <form action="modifAdmin.php" method="post">
+                        <form action="modifAdmin.php?statut={{statut}}&id={{id}}" method="post">
                             <input type="hidden" name="userModif" value="{{ user.id }}">
                             <button type="submit">Modifier</button>
                         </form>

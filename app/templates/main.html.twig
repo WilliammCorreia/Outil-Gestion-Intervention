@@ -2,111 +2,130 @@
     <head>
         <meta charset="utf-8"/>
         <title>AccordEnergie</title>
-        <link rel="stylesheet" href="style/register.css"/>
+        <link rel="stylesheet" href="style/main.css"/>
     </head>
-</html>
-{% block content %}
-    <body>
-        <nav>
-            <ul>
-                {% if ( statut == 'admin' ) %}
-                    <li>
-                        <a href="admin.php?statut={{statut}}&id={{id}}"><button>Utilisateur</button></a>
-                    </li>
-                {% endif %}
+<body>
+    <nav>
+        <h2>AccordEnergie</h2>
+        <ul>
+            
+            {% if ( statut == 'admin' ) %}
                 <li>
-                    <a href="index.php"><button>Déconnexion</button></a>
+                    <a href="admin.php?statut={{statut}}&id={{id}}"><button>Utilisateur</button></a>
                 </li>
-            </ul>
-        </nav>
+            {% endif %}
+            <li>
+                <a href="profil.php?statut={{statut}}&id={{id}}"><button>Profil</button></a>
+            </li>
+            <li>
+                <a href="index.php"><button>Déconnexion</button></a>
+            </li>
+            <li><img src="style/logo.png" alt="Logo"></li>
+        </ul>
+    </nav>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Sujet</th>
-                    <th>Statut</th>
-                    <th>Priorité</th>
-                    <th>Assigné</th>
-                    <th>Demandeur</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for tickets in ticket %}
-                <tr>
-                    <td>{{ tickets.id_ticket }}</td>
-                    <td>{{ tickets.sujet }}</td>
-                    <td>{{ tickets.statut }}</td>
-                    <td>{{ tickets.priorite }}</td>
-                    <td>{{ tickets.assigne }}</td>
-                    <td>{{ tickets.demandeur }}</td>
-                    <td>{{ tickets.date }}</td>
-                    {% if ( statut == 'client' ) %}
-                        <td>
-                            <form action="addTicket.php?statut={{statut}}&id={{id}}" method="post">
-                                <input type="hidden" name="addTicket">
-                                <button type="submit">Ajouter</button>
-                            </form>
-                        </td>
-                        <td>
-                            <form action="note.php?statut={{statut}}&id={{id}}&id_ticket={{tickets.id_ticket}}" method="post">
-                                <input type="hidden" name="addTicket">
-                                <button type="submit">Commentaire</button>
-                            </form>
-                        </td>
-                    {% elseif ( statut == 'intervenant' ) %}
-                        <td>
-                            <form action="modifStatut.php?statut={{statut}}&id={{id}}&id_ticket={{tickets.id_ticket}}" method="post">
-                                <input type="hidden" name="modifStatut">
-                                <button type="submit">Modifier</button>
-                            </form>
-                        </td>
-                        <td><button type="submit">Lire</button></td>
-                    {% elseif ( statut == 'standardiste' ) %}
-                        <td>
-                            <form action="addEntireTicket.php?statut={{statut}}&id={{id}}&id_ticket={{tickets.id_ticket}}" method="post">
-                                <input type="hidden" name="addEntireTicket">
-                                <button type="submit">Ajouter</button>
-                            </form>
-                        </td>
-                        <td>
-                            <form action="modifTicket.php?statut={{statut}}&id={{id}}&id_ticket={{tickets.id_ticket}}" method="post">
-                                <input type="hidden" name="modifTicket" value="{{ tickets.id_ticket }}">
-                                <button type="submit">Modifier</button>
-                            </form>
-                        </td>
-                        <td><button type="submit">Lire</button></td>
-                        <td>
-                            <form action="main.php?statut={{statut}}&id={{id}}" method="post">
-                                <input type="hidden" name="deleteTicket" value="{{ tickets.id_ticket }}">
-                                <button type="submit">Supprimer</button>
-                            </form>
-                        </td>
-                    {% else %}
-                        <td>
-                            <form action="addEntireTicket.php?statut={{statut}}&id={{id}}&id_ticket={{tickets.id_ticket}}" method="post">
-                                <input type="hidden" name="addEntireTicket">
-                                <button type="submit">Ajouter</button>
-                            </form>
-                        </td>
-                        <td>
-                            <form action="modifTicket.php?statut={{statut}}&id={{id}}&id_ticket={{tickets.id_ticket}}" method="post">
-                                <input type="hidden" name="modifTicket" value="{{ tickets.id_ticket }}">
-                                <button type="submit">Modifier</button>
-                            </form>
-                        </td>
-                        <td><button type="submit">Lire</button></td>
-                        <td>
-                            <form action="main.php?statut={{statut}}&id={{id}}" method="post">
-                                <input type="hidden" name="deleteTicket" value="{{ tickets.id_ticket }}">
-                                <button type="submit">Supprimer</button>
-                            </form>
-                        </td>
-                    {% endif %}
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </body>
-{% endblock %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Sujet</th>
+                <th>Statut</th>
+                <th>Priorité</th>
+                <th>Assigné</th>
+                <th>Demandeur</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tickets in ticket %}
+            <tr>
+                <td>{{ tickets.id_ticket }}</td>
+                <td>{{ tickets.sujet }}</td>
+                <td>{{ tickets.statut }}</td>
+                <td>{{ tickets.priorite }}</td>
+                <td>{{ tickets.assigne }}</td>
+                <td>{{ tickets.demandeur }}</td>
+                <td>{{ tickets.date }}</td>
+                {% if ( statut == 'client' ) %}
+                    <td>
+                        <form action="addTicket.php?statut={{statut}}&id={{id}}" method="post">
+                            <input type="hidden" name="addTicket">
+                            <button type="submit">Ajouter</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="note.php?statut={{statut}}&id={{id}}&id_ticket={{tickets.id_ticket}}" method="post">
+                            <input type="hidden" name="addTicket">
+                            <button type="submit">Commentaire</button>
+                        </form>
+                    </td>
+                {% elseif ( statut == 'intervenant' ) %}
+                    <td>
+                        <form action="modifStatut.php?statut={{statut}}&id={{id}}&id_ticket={{tickets.id_ticket}}" method="post">
+                            <input type="hidden" name="modifStatut">
+                            <button type="submit">Modifier</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="note.php?statut={{statut}}&id={{id}}&id_ticket={{tickets.id_ticket}}" method="post">
+                            <input type="hidden" name="addTicket">
+                            <button type="submit">Commentaire</button>
+                        </form>
+                    </td>
+                {% elseif ( statut == 'standardiste' ) %}
+                    <td>
+                        <form action="addEntireTicket.php?statut={{statut}}&id={{id}}&id_ticket={{tickets.id_ticket}}" method="post">
+                            <input type="hidden" name="addEntireTicket">
+                            <button type="submit">Ajouter</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="modifTicket.php?statut={{statut}}&id={{id}}&id_ticket={{tickets.id_ticket}}" method="post">
+                            <input type="hidden" name="modifTicket" value="{{ tickets.id_ticket }}">
+                            <button type="submit">Modifier</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="note.php?statut={{statut}}&id={{id}}&id_ticket={{tickets.id_ticket}}" method="post">
+                            <input type="hidden" name="addTicket">
+                            <button type="submit">Commentaire</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="main.php?statut={{statut}}&id={{id}}" method="post">
+                            <input type="hidden" name="deleteTicket" value="{{ tickets.id_ticket }}">
+                            <button type="submit">Supprimer</button>
+                        </form>
+                    </td>
+                {% else %}
+                    <td>
+                        <form action="addEntireTicket.php?statut={{statut}}&id={{id}}&id_ticket={{tickets.id_ticket}}" method="post">
+                            <input type="hidden" name="addEntireTicket">
+                            <button type="submit">Ajouter</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="modifTicket.php?statut={{statut}}&id={{id}}&id_ticket={{tickets.id_ticket}}" method="post">
+                            <input type="hidden" name="modifTicket" value="{{ tickets.id_ticket }}">
+                            <button type="submit">Modifier</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="note.php?statut={{statut}}&id={{id}}&id_ticket={{tickets.id_ticket}}" method="post">
+                            <input type="hidden" name="addTicket">
+                            <button type="submit">Commentaire</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="main.php?statut={{statut}}&id={{id}}" method="post">
+                            <input type="hidden" name="deleteTicket" value="{{ tickets.id_ticket }}">
+                            <button type="submit">Supprimer</button>
+                        </form>
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

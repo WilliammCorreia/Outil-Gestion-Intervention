@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8"/>
         <title>AccordEnergie</title>
-        <link rel="stylesheet" href="style/register.css"/>
+        <link rel="stylesheet" href="style/note.css"/>
     </head>
 </html>
 {% block content %}
@@ -31,7 +31,11 @@
                 {% endfor %}
                 <li>
                     <form action="note.php?statut={{statut}}&id={{id}}&id_ticket={{id_ticket}}" method="post">
-                        <input type="text" name="addNote">
+                        {% if statut == "admin" %}
+                            <input type="text" name="addNote" value="ADMINISTRATEUR : ">
+                        {% else %}
+                            <input type="text" name="addNote" value="{{user.first_name}} {{user.last_name}} : ">
+                        {% endif %}
                         <button type="submit">Ajouter</button>
                     </form>
                 </li>

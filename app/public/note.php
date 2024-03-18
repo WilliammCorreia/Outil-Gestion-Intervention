@@ -11,11 +11,12 @@
         $statut = $_GET['statut'];
         $id = $_GET['id'];
         $id_ticket = $_GET['id_ticket'];
+        $user = $page->getUser($id);
     }
 
     $notes = $page->getNote($id_ticket);
 
-    echo $page->render('note.html.twig', ['statut' => $statut, 'id' => $id, 'notes' => $notes, 'id_ticket' => $id_ticket]);
+    echo $page->render('note.html.twig', ['statut' => $statut, 'id' => $id, 'notes' => $notes, 'id_ticket' => $id_ticket, 'user' => $user]);
 
     if(isset($_POST['addNote'])) {
         

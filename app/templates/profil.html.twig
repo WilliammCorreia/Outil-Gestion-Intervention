@@ -1,92 +1,55 @@
-{# {% extends "base.html.twig" %}
-
-{% block content %}
-    <div class="container">
-        <h1>Bonjour {{email}}</h1>
-    </div>
-{% endblock %}
- #}
-
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8"/>
-        <title>AccordEnergie</title>
-        <link rel="stylesheet" href="style/register.css"/>
-    </head>
+<head>
+    <meta charset="utf-8"/>
+    <title>AccordEnergie</title>
+     <link rel="stylesheet" href="style/profil.css"/> 
+</head>
+<body>
+    <header>
+        <h2>AccordEnergie</h2>
+        <img src="style/logo.png" alt="Logo">
+    </header>
+    <nav>
+        <ul>
+            {% if ( statut == 'admin' ) %}
+                <li>
+                    <a href="admin.php?statut={{statut}}&id={{id}}"><button>Utilisateur</button></a>
+                </li>
+            {% endif %}
+            <li>
+                <a href="main.php?statut={{statut}}&id={{id}}"><button>Ticket</button></a>
+            </li>
+            <li>
+                <a href="index.php"><button>Déconnexion</button></a>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <h1>Profil :</h1>
+
+        <form action="main.php?statut={{statut}}&id={{id}}" method="post">
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" value="{{ user.email }}" required>
+            <br>
+            <label for="first_name">Prénom :</label>
+            <input type="text" id="first_name" name="first_name" value="{{ user.first_name }}" required>
+            <br>
+            <label for="last_name">Nom :</label>
+            <input type="text" id="last_name" name="last_name" value="{{ user.last_name }}" required>
+            <br>
+            <label for="password">Nouveau Mot de passe :</label>
+            <input type="password" id="password" name="password">
+            <br>
+            <label for="postal_nb">Code Postal :</label>
+            <input type="text" id="postal_nb" name="postal_nb" value="{{ user.postal_nb }}" required>
+            <br>
+            <label for="statut">Statut :</label>
+            <input type="text" id="statut" name="statut" value="{{ user.statut }}" required>
+            <div>
+               <input type="submit" name="modifyProfil" value="Modifier" />
+            </div>
+        </form>
+    </main>
+</body>
 </html>
-{% block content %}
-    <body>
-        <header>
-            <h2>AccordEnergie</h2>
-            <img src="style/logo.png" alt="Logo">
-        </header>
-        <main>
-            <h1>Créer un compte</h1>
-
-            <form action="" method="post">
-                <label for="email"></label>
-                <input for="email"
-                    type="email"
-                    required="required"
-                    id="email"
-                    name="email"
-                    placeholder="Entrer l'email"
-                />
-                <br>
-                <label for="password"></label>
-                <input
-                    type="password"
-                    required="required"
-                    id="password"
-                    name="password"
-                    placeholder="Entrer le mot de passe"
-                />
-                <br>
-                <label for="password_cfg"></label>
-                <input
-                    type="password"
-                    required="required"
-                    id="password_cfg"
-                    name="password_cfg"
-                    placeholder="Confirmer le mot de passe"
-                />
-                <br>
-                <label for="last_name"></label>
-                <input for="last_name"
-                    type="text"
-                    required="required"
-                    id="last_name"
-                    name="last_name"
-                    placeholder="Entrer le nom"
-                />
-                <br>
-                <label for="first_name"></label>
-                <input for="first_name"
-                    type="text"
-                    required="required"
-                    id="first_name"
-                    name="first_name"
-                    placeholder="Entrer le prénom"
-                />
-                <br>
-                <label for="postal_nb"></label>
-                <input for="postal_nb"
-                    type="text"
-                    required="required"
-                    id="postal_nb"
-                    name="postal_nb"
-                    placeholder="Entrer votre code postal"
-                />
-                <br>
-
-                <div>
-                    <input type="submit" name="send" value="Créer" />
-                </div>
-            </form>
-
-            <p>
-                <a href="index.php">Se connecter ?</a>
-            </p>
-        </main>
-    </body>
-{% endblock %}

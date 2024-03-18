@@ -76,6 +76,20 @@ class Page
         ]);
     }
 
+    public function modifyProfil(int $id, array $data) {
+        $sql = "UPDATE users SET email = :email, password = :password, last_name = :last_name, first_name = :first_name, postal_nb = :postal_nb, statut = :statut WHERE id = :id";
+        $stmt = $this->link->prepare($sql);
+        $stmt->execute([
+            'id' => $id,
+            'email' => $data['email'],
+            'password' => $data['password'],
+            'last_name' => $data['last_name'],
+            'first_name' => $data['first_name'],
+            'postal_nb' => $data['postal_nb'],
+            'statut' => $data['statut']
+        ]);
+    }
+
     public function addTicket(array $data)
     {
         $sql = "INSERT INTO ticket (sujet, statut, priorite, assigne, demandeur, id_client, id_intervenant) VALUES (:sujet, :statut, :priorite, :assigne, :demandeur, :id_client, :id_intervenant)";

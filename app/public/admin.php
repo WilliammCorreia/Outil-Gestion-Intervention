@@ -10,8 +10,6 @@
     $id = $_GET['id'];
 
     $allUsers = $page->getAllUsers();
-    
-    echo $page->render('admin.html.twig', ['users' => $allUsers, 'statut' => $statut, 'id' => $id]);
 
     // Supprimer un user
     if (isset($_POST['user_id'])) {
@@ -32,4 +30,9 @@
             'postal_nb' => $_POST['postal_nb'],
             'statut' => $_POST['statut']
         ]);
+
+        header('Location: admin.php?statut='. $statut .'&id='. $id);
+        exit;
     }
+
+    echo $page->render('admin.html.twig', ['users' => $allUsers, 'statut' => $statut, 'id' => $id]);
