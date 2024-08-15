@@ -108,11 +108,19 @@ class Page
     }
 
     public function getNote(int $id_ticket) {
-        $sql = "SELECT * FROM note WHERE id_ticket = :id_ticket";
+        $sql = "SELECT * FROM note JOIN users WHERE id_ticket = :id_ticket AND users.id LIKE note.id_auteur";
         $stmt = $this->link->prepare($sql);
         $stmt->execute(['id_ticket' => $id_ticket]);
         $note = $stmt->fetchAll();
         return $note;
+    }
+
+    public function getUserOfANote(int $id_auteur) {
+        $sql = "SELECT * FROM users WHERE id = :id_auteur";
+        $stmt = $this->link->prepare($sql);
+        $stmt->execute(['id_auteur' => $id_auteur]);
+        $userNote = $stmt->fetch();
+        return $userNote;
     }
 
     public function getAllTicket() {

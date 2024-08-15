@@ -26,19 +26,27 @@
         <h1>Commentaires :</h1>
         <main>
             <ul>
-                {% for note in notes %}
-                    <li> {{ note.note }}</li>
-                {% endfor %}
-                <li>
-                    <form action="note.php?statut={{statut}}&id={{id}}&id_ticket={{id_ticket}}" method="post">
+                <article>
+                    {% for note in notes|reverse %}
                         {% if statut == "admin" %}
-                            <input type="text" name="addNote" value="ADMINISTRATEUR : ">
+                            <li>ADMINISTRATEUR : {{ note.note }}</li>
                         {% else %}
-                            <input type="text" name="addNote" value="{{user.first_name}} {{user.last_name}} : ">
+                            <li>{{note.first_name}} {{note.last_name}} : {{ note.note }}</li>
                         {% endif %}
-                        <button type="submit">Ajouter</button>
-                    </form>
-                </li>
+                    {% endfor %}
+                </article>
+                <section>
+                    <li>
+                        <form action="note.php?statut={{statut}}&id={{id}}&id_ticket={{id_ticket}}" method="post">
+                            {% if statut == "admin" %}
+                                <input type="text" name="addNote">
+                            {% else %}
+                                <input type="text" name="addNote">
+                            {% endif %}
+                            <button type="submit">Ajouter</button>
+                        </form>
+                    </li>
+                </section>
             </ul>
         </main>
     </body>
